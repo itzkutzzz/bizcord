@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html><html lang="en" w-tid="1">
+<head w-tid="3">
+  
+<title>Bizcord</title>
+<meta property="og:title" content="Bizcord"/>
+<meta property="og:url" content="https://discord-clone--imkutzz.on.websim.ai?v=7"/>
+<meta property="og:type" content="website"/>
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="og:image" content="https://images.websim.ai/v1/project/y2zvtst_uh0ma0j3rqib/revision/7/1200.jpeg"/>
+<meta property="twitter:image" content="https://images.websim.ai/v1/project/y2zvtst_uh0ma0j3rqib/revision/7/1200.jpeg"/>
+<link rel="stylesheet" href="https://api.websim.ai/fonts.css?v=89f476f0d3acad11cf92785adf115b8efd7a45de">
+<link rel="stylesheet" href="https://api.websim.ai/ctxmenu.css?v=89f476f0d3acad11cf92785adf115b8efd7a45de">
+<script class="websim-injected">__WEBSIM_DATA__={"home":false,"hostOrigin":"https://websim.ai","apiOrigin":"https://api.websim.ai","isTopLevelFrame":true,"project_id":"y2zvtst_uh0ma0j3rqib","route":{"type":"slug","username":"imkutzz","slug":"discord-clone","version":7}}</script>
+<script class="websim-injected" src="https://api.websim.ai/dist/index.js?v=89f476f0d3acad11cf92785adf115b8efd7a45de"></script>
+<meta charset="UTF-8" w-tid="5"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" w-tid="7"/>
+  <!--title>Discord Clone</title-->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" w-tid="11"/>
+  <script type="importmap" w-tid="13">
+    {
+      "imports": {
+        "uuid": "https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-browser/index.js"
+      }
+    }
+  </script>
+  <style w-tid="15">
+    :root {
+      --background-color: #36393f;
+      --channel-area-color: #2f3136;
+      --server-list-color: #202225;
+      --chat-input-color: #40444b;
+      --text-color: #dcddde;
+      --text-muted-color: #8e9297;
+      --chat-font-size: 14px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: var(--chat-font-size);
+      line-height: 1.4;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .app {
+      display: grid;
+      grid-template-columns: 70px 240px auto 240px;
+      height: 100vh;
+    }
+    
+    /* Servers List */
+    .servers-list {
+      background-color: var(--server-list-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+      overflow-y: auto;
+    }
+    
+    .server {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #36393f;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: border-radius 0.2s;
+    }
+    
+    .server.active {
+      border-radius: 16px;
+      background-color: #5865f2;
+    }
+    
+    .server-icon {
+      width: 28px;
+      height: 28px;
+      color: #dcddde;
+    }
+    
+    .server.active .server-icon {
+      color: white;
+    }
+    
+    /* Channel Area */
+    .channel-area {
+      background-color: var(--channel-area-color);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .channel-header {
+      height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid #232428;
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 1px 0 rgba(4,4,5,0.2);
+    }
+    
+    .channels {
+      flex: 1;
+      padding: 8px;
+      overflow-y: auto;
+    }
+    
+    .channel-category {
+      margin-bottom: 20px;
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      color: var(--text-muted-color);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px;
+      cursor: pointer;
+    }
+    
+    .channel {
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 4px;
+      color: var(--text-muted-color);
+      cursor: pointer;
+      margin-bottom: 2px;
+    }
+    
+    .channel:hover {
+      background-color: #3c3f45;
+      color: var(--text-color);
+    }
+    
+    .channel.active {
+      background-color: #3c3f45;
+      color: white;
+    }
+    
+    .channel-icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 6px;
+    }
+    
+    .user-info {
+      height: 52px;
+      background-color: var(--server-list-color);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+    }
+    
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #5865f2;
+      margin-right: 8px;
+      overflow: hidden;
+    }
+    
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .user-details {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .username {
+      color: var(--text-color);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    /* Chat Area */
+    .chat-area {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--background-color);
+    }
+    
+    .chat-header {
+      height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid #232428;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 1px 0 rgba(4,4,5,0.2);
+    }
+    
+    .channel-name {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .messages-container {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .message {
+      display: flex;
+      margin-bottom: 16px;
+      padding: 2px 0;
+    }
+    
+    .message-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 16px;
+      overflow: hidden;
+    }
+    
+    .message-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .message-content {
+      flex: 1;
+    }
+    
+    .message-header {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    
+    .message-author {
+      font-weight: 500;
+      color: var(--text-color);
+      margin-right: 8px;
+    }
+    
+    .message-timestamp {
+      font-size: 12px;
+      color: var(--text-muted-color);
+    }
+    
+    .message-text {
+      color: var(--text-color);
+      word-wrap: break-word;
+    }
+    
+    .message-input-container {
+      padding: 0 16px 24px;
+    }
+    
+    .message-input {
+      background-color: var(--chat-input-color);
+      border-radius: 8px;
+      padding: 10px 16px;
+    }
+    
+    .message-input input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #dcddde;
+      font-size: 16px;
+      outline: none;
+    }
+    
+    .message-input input::placeholder {
+      color: #72767d;
+    }
+    
+    /* Members List */
+    .members-list {
+      background-color: var(--channel-area-color);
+      overflow-y: auto;
+    }
+    
+    .members-header {
+      height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid #232428;
+      display: flex;
+      align-items: center;
+      color: var(--text-muted-color);
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 1px 0 rgba(4,4,5,0.2);
+    }
+    
+    .members-group {
+      padding: 20px 8px 8px 16px;
+    }
+    
+    .group-header {
+      color: var(--text-muted-color);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .member {
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 2px;
+    }
+    
+    .member:hover {
+      background-color: #3c3f45;
+    }
+    
+    .member-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 8px;
+      overflow: hidden;
+    }
+    
+    .member-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .member-username {
+      color: var(--text-color);
+      font-weight: 500;
+    }
+    
+    .typing-indicator {
+      font-style: italic;
+      color: var(--text-muted-color);
+      font-size: 13px;
+      margin-bottom: 10px;
+      opacity: 0.7;
+    }
+    
+    /* Server Members List Modal */
+    .server-members-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .server-member-item {
+      padding: 10px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    
+    .server-member-item:hover {
+      background-color: var(--background-color);
+    }
+    
+    /* User Profile Modal */
+    .profile-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .profile-modal.active {
+      display: flex;
+    }
+    
+    .profile-card {
+      background-color: var(--channel-area-color);
+      border-radius: 8px;
+      width: 340px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .profile-banner {
+      height: 60px;
+      background-color: #5865f2;
+    }
+    
+    .profile-content {
+      padding: 16px;
+      position: relative;
+    }
+    
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 6px solid var(--channel-area-color);
+      position: absolute;
+      top: -40px;
+      left: 16px;
+      background-color: #5865f2;
+      overflow: hidden;
+    }
+    
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .profile-info {
+      margin-top: 50px;
+    }
+    
+    .profile-username {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--text-color);
+      margin-bottom: 8px;
+    }
+    
+    .profile-tag {
+      font-size: 14px;
+      color: var(--text-muted-color);
+      margin-bottom: 16px;
+    }
+    
+    .profile-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
+    .profile-about {
+      background-color: var(--server-list-color);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .profile-about-title {
+      color: var(--text-muted-color);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    
+    .profile-about-content {
+      color: var(--text-color);
+      font-size: 14px;
+    }
+    
+    /* Appearance Settings Modal */
+    .settings-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .settings-modal.active {
+      display: flex;
+    }
+    
+    .settings-container {
+      background-color: var(--channel-area-color);
+      border-radius: 8px;
+      width: 700px;
+      height: 80%;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .settings-sidebar {
+      width: 200px;
+      background-color: var(--server-list-color);
+      padding: 20px 10px;
+    }
+    
+    .settings-sidebar h3 {
+      color: var(--text-color);
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    
+    .settings-nav-item {
+      padding: 10px;
+      margin-bottom: 2px;
+      border-radius: 4px;
+      color: var(--text-muted-color);
+      cursor: pointer;
+    }
+    
+    .settings-nav-item:hover {
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+    
+    .settings-nav-item.active {
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+    
+    .settings-content {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--background-color);
+    }
+    
+    .settings-header h2 {
+      color: var(--text-color);
+      font-size: 20px;
+    }
+    
+    .settings-close {
+      color: var(--text-muted-color);
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    .settings-section {
+      margin-bottom: 40px;
+    }
+    
+    .settings-section h3 {
+      color: var(--text-muted-color);
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .theme-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    
+    .theme-card {
+      background-color: var(--background-color);
+      border-radius: 8px;
+      padding: 15px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    
+    .theme-card:hover {
+      background-color: var(--chat-input-color);
+    }
+    
+    .theme-card.active {
+      border-color: #7289da;
+    }
+    
+    .theme-card h4 {
+      color: var(--text-color);
+      margin-bottom: 10px;
+    }
+    
+    .theme-preview {
+      display: flex;
+      height: 80px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .theme-preview-sidebar {
+      width: 20%;
+    }
+    
+    .theme-preview-content {
+      flex: 1;
+      position: relative;
+    }
+    
+    .theme-preview-input {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      height: 20px;
+      border-radius: 4px;
+    }
+    
+    /* Color customization options */
+    .color-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .color-option {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .color-option label {
+      color: var(--text-muted-color);
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+    
+    .color-option input {
+      background: none;
+      border: none;
+      height: 30px;
+      cursor: pointer;
+    }
+    
+    .font-options {
+      margin-top: 20px;
+    }
+    
+    .font-size-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .font-size-option label {
+      color: var(--text-muted-color);
+      margin-right: 15px;
+      width: 150px;
+    }
+    
+    .font-size-option input {
+      flex: 1;
+    }
+    
+    .font-size-option span {
+      color: var(--text-muted-color);
+      margin-left: 10px;
+      width: 30px;
+      text-align: right;
+    }
+    
+    .custom-theme-section {
+      background-color: var(--server-list-color);
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    
+    .custom-theme-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .custom-theme-header h4 {
+      color: var(--text-color);
+    }
+    
+    .member:hover, .message-avatar:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body w-tid="17">
+  <div class="app" w-tid="19">
+    <div class="servers-list" w-tid="21">
+      <div class="server active" w-tid="23">
+        <svg viewbox="0 0 24 24" class="server-icon" w-tid="25">
+          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" w-tid="27"></path>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="channel-area" w-tid="29">
+      <div class="channel-header" w-tid="31">
+        <h3 w-tid="33">Bizcord</h3>
+      </div>
+      
+      <div class="channels" w-tid="35">
+        <div class="channel-category" w-tid="37">
+          <div class="category-header" w-tid="39">
+            <span w-tid="41">TEXT CHANNELS</span>
+          </div>
+          <div class="channel active" w-tid="43">
+            <svg viewbox="0 0 24 24" class="channel-icon" w-tid="45">
+              <path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" w-tid="47"></path>
+            </svg>
+            <span w-tid="49">general</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="user-info" w-tid="51">
+        <div class="avatar" w-tid="53">
+          <img id="current-user-avatar" src alt="User avatar" w-tid="55"/>
+        </div>
+        <div class="user-details" w-tid="57">
+          <div id="current-username" class="username" w-tid="59">Loading...</div>
+        </div>
+        <div id="settings-button" style="margin-left: auto; cursor: pointer;" w-tid="61">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" w-tid="63">
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="currentColor" w-tid="65"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 12.3545 21.9556 12.7091 21.8667 13.0636L19.6667 13.9455C19.4889 14.5818 19.2 15.1636 18.8 15.7L19.0222 18.0909C18.5333 18.4909 18 18.8455 17.4222 19.1091L15.3778 17.8909C14.8222 18.0455 14.2222 18.1455 13.6 18.1455C12.9778 18.1455 12.3778 18.0455 11.8222 17.8909L9.77778 19.1091C9.2 18.8455 8.66667 18.4909 8.17778 18.0909L8.4 15.7C8 15.1636 7.71111 14.5818 7.53333 13.9455L5.33333 13.0636C5.24444 12.7091 5.2 12.3545 5.2 12C5.2 11.6455 5.24444 11.2909 5.33333 10.9364L7.53333 10.0545C7.71111 9.41818 8 8.83636 8.4 8.3L8.17778 5.90909C8.66667 5.50909 9.2 5.15455 9.77778 4.89091L11.8222 6.10909C12.3778 5.95455 12.9778 5.85455 13.6 5.85455C14.2222 5.85455 14.8222 5.95455 15.3778 6.10909L17.4222 4.89091C18 5.15455 18.5333 5.50909 19.0222 5.90909L18.8 8.3C19.2 8.83636 19.4889 9.41818 19.6667 10.0545L21.8667 10.9364C21.9556 11.2909 22 11.6455 22 12Z" fill="currentColor" w-tid="67"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    
+    <div class="chat-area" w-tid="69">
+      <div class="chat-header" w-tid="71">
+        <div class="channel-name" w-tid="73">
+          <svg viewbox="0 0 24 24" class="channel-icon" w-tid="75">
+            <path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" w-tid="77"></path>
+          </svg>
+          <span w-tid="79">general</span>
+        </div>
+      </div>
+      
+      <div id="messages-container" class="messages-container" w-tid="81"></div>
+      
+      <div class="message-input-container" w-tid="83">
+        <form id="message-form" w-tid="85">
+          <div class="message-input" w-tid="87">
+            <input type="text" id="message-input" placeholder="Message #general" autocomplete="off" w-tid="89"/>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="members-list" w-tid="91">
+      <div class="members-header" w-tid="93">
+        <h3 w-tid="95">MEMBERS</h3>
+      </div>
+      <div id="online-members" class="members-group" w-tid="97">
+        <div class="group-header" w-tid="99">ONLINE</div>
+        <!-- Online members will be populated here -->
+      </div>
+    </div>
+  </div>
+
+  <script w-tid="101">
+    // Configuration settings
+    const config = {
+      // How often to update typing status (in milliseconds)
+      typingIndicatorTimeout: 5000,
+      
+      // Maximum number of messages to retain
+      maxMessages: 100,
+      
+      // App name
+      appName: "Discord Clone",
+      
+      // Default theme
+      defaultTheme: "dark",
+      
+      // Available themes
+      themes: {
+        dark: {
+          name: "Dark",
+          background: "#36393f",
+          channelArea: "#2f3136",
+          chatInput: "#40444b",
+          serverList: "#202225",
+          text: "#dcddde",
+          textMuted: "#8e9297"
+        },
+        light: {
+          name: "Light",
+          background: "#ffffff",
+          channelArea: "#f2f3f5",
+          chatInput: "#ebedef",
+          serverList: "#e3e5e8",
+          text: "#2e3338",
+          textMuted: "#747f8d"
+        },
+        midnight: {
+          name: "Midnight",
+          background: "#141414",
+          channelArea: "#1e1e1e",
+          chatInput: "#303030",
+          serverList: "#0a0a0a",
+          text: "#ffffff",
+          textMuted: "#888888"
+        },
+        cozy: {
+          name: "Cozy",
+          background: "#2c2541",
+          channelArea: "#231d38",
+          chatInput: "#33294c",
+          serverList: "#191325",
+          text: "#e8e6f0",
+          textMuted: "#9b8fc4"
+        },
+        popcorn: {
+          name: "Popcorn",
+          background: "#fcf8e8",
+          channelArea: "#f8ecd1",
+          chatInput: "#f9f5e7",
+          serverList: "#ecdfc8",
+          text: "#5a4d41",
+          textMuted: "#94816c"
+        },
+        caramel: {
+          name: "Caramel",
+          background: "#c19a6b",
+          channelArea: "#9f7e51",
+          chatInput: "#d9b38c",
+          serverList: "#7e6342",
+          text: "#ffffff",
+          textMuted: "#e2d3c3"
+        },
+        cottonCandy: {
+          name: "Cotton Candy",
+          background: "#fcddec",
+          channelArea: "#d1a7c9",
+          chatInput: "#f8e6f0",
+          serverList: "#bb8dab",
+          text: "#8a4a7d",
+          textMuted: "#b985a9"
+        },
+        pinky: {
+          name: "Pinky",
+          background: "#ff9fb2",
+          channelArea: "#ff758f",
+          chatInput: "#ffb3c1",
+          serverList: "#ff5c7f",
+          text: "#ffffff",
+          textMuted: "#ffcfd7"
+        },
+        coolRed: {
+          name: "Cool Red",
+          background: "#ba3c46",
+          channelArea: "#93313a",
+          chatInput: "#cc4b55",
+          serverList: "#752a31",
+          text: "#ffffff",
+          textMuted: "#e6b5b9"
+        },
+        fantasticBlue: {
+          name: "Fantastic Blue",
+          background: "#2c698d",
+          channelArea: "#1e4c66",
+          chatInput: "#3a86b7",
+          serverList: "#16384c",
+          text: "#ffffff",
+          textMuted: "#bcdaf2"
+        }
+      }
+    };
+    
+    // Use a self-executing function to handle initialization without requiring import
+    (async function() {
+      let uuidv4;
+      
+      try {
+        // Import UUID from CDN
+        const module = await import('uuid');
+        uuidv4 = module.v4;
+      } catch (error) {
+        console.error('Failed to import UUID:', error);
+        // Fallback UUID function if import fails
+        uuidv4 = function() {
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+        };
+      }
+      
+      // Initialize WebSocket connection
+      const room = new WebsimSocket();
+      let typingTimeout = null;
+      let currentTheme = localStorage.getItem('theme') || config.defaultTheme;
+
+      // Initialize once DOM is loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      async function init() {
+        try {
+          await room.initialize();
+          
+          // Setup event listeners
+          setupEventListeners();
+          
+          // Update UI with current user info
+          updateCurrentUserUI();
+          
+          // Initialize the channel with any existing messages
+          renderMessages();
+          
+          // Render online members
+          renderMembers();
+          
+          // Apply saved theme
+          applyTheme(currentTheme);
+          
+        } catch (error) {
+          console.error('Failed to initialize the chat app:', error);
+        }
+      }
+
+      // Setup all event listeners
+      function setupEventListeners() {
+        // Form submission for sending messages
+        document.getElementById('message-form').addEventListener('submit', handleMessageSubmit);
+        
+        // Typing indicator
+        document.getElementById('message-input').addEventListener('input', handleTypingEvent);
+        
+        // Subscribe to presence updates (user join/leave and typing status)
+        room.subscribePresence(handlePresenceUpdate);
+        
+        // Subscribe to room state updates (messages)
+        room.subscribeRoomState(handleRoomStateUpdate);
+        
+        // Add click event listeners for viewing profiles
+        document.addEventListener('click', handleProfileClick);
+        
+        // Open settings button
+        document.getElementById('settings-button').addEventListener('click', openAppearanceSettings);
+      }
+
+      // Handle message submission
+      function handleMessageSubmit(event) {
+        event.preventDefault();
+        const input = document.getElementById('message-input');
+        const messageText = input.value.trim();
+        
+        if (messageText) {
+          // Send the message to the room
+          sendMessage(messageText);
+          
+          // Clear the input
+          input.value = '';
+          
+          // Clear typing indicator
+          clearTypingStatus();
+        }
+      }
+
+      // Send a message to the room
+      function sendMessage(text) {
+        const messageId = `msg-${uuidv4()}`;
+        const timestamp = Date.now();
+        
+        // Update the room state with the new message
+        const messages = room.roomState.messages || {};
+        
+        // Create the new message object
+        const newMessage = {
+          id: messageId,
+          text,
+          authorId: room.clientId,
+          timestamp,
+        };
+        
+        // Add it to the room state
+        room.updateRoomState({
+          messages: {
+            ...messages,
+            [messageId]: newMessage
+          }
+        });
+        
+        // Limit the number of messages (clean up old ones)
+        setTimeout(() => {
+          pruneOldMessages();
+        }, 100);
+      }
+
+      // Keep only the most recent messages up to the max limit
+      function pruneOldMessages() {
+        const messages = room.roomState.messages || {};
+        const messagesList = Object.values(messages).sort((a, b) => a.timestamp - b.timestamp);
+        
+        if (messagesList.length > config.maxMessages) {
+          const messagesToRemove = messagesList.slice(0, messagesList.length - config.maxMessages);
+          const updates = {};
+          
+          messagesToRemove.forEach(msg => {
+            updates[msg.id] = null;
+          });
+          
+          room.updateRoomState({
+            messages: updates
+          });
+        }
+      }
+
+      // Handle typing event
+      function handleTypingEvent() {
+        // Update typing status
+        room.updatePresence({
+          typing: true,
+          lastTyping: Date.now()
+        });
+        
+        // Clear existing timeout
+        if (typingTimeout) {
+          clearTimeout(typingTimeout);
+        }
+        
+        // Set a new timeout to clear typing status
+        typingTimeout = setTimeout(clearTypingStatus, config.typingIndicatorTimeout);
+      }
+
+      // Clear typing status
+      function clearTypingStatus() {
+        room.updatePresence({
+          typing: false
+        });
+        
+        if (typingTimeout) {
+          clearTimeout(typingTimeout);
+          typingTimeout = null;
+        }
+      }
+
+      // Handle presence updates (users joining, leaving, typing)
+      function handlePresenceUpdate(presence) {
+        // Re-render members list
+        renderMembers();
+        
+        // Update typing indicators
+        updateTypingIndicators();
+      }
+
+      // Handle room state updates (new messages)
+      function handleRoomStateUpdate(roomState) {
+        // Re-render messages
+        renderMessages();
+      }
+
+      // Update UI with current user info
+      function updateCurrentUserUI() {
+        const currentUser = room.peers[room.clientId];
+        if (currentUser) {
+          document.getElementById('current-username').textContent = currentUser.username;
+          document.getElementById('current-user-avatar').src = currentUser.avatarUrl;
+        }
+      }
+
+      // Render all messages
+      function renderMessages() {
+        const messagesContainer = document.getElementById('messages-container');
+        const messages = room.roomState.messages || {};
+        
+        // Convert the messages object to an array and sort by timestamp
+        const messagesList = Object.values(messages).sort((a, b) => a.timestamp - b.timestamp);
+        
+        // Generate HTML for all messages
+        const messagesHTML = messagesList.map(message => {
+          const author = room.peers[message.authorId] || { username: 'Unknown User', avatarUrl: '' };
+          const timestamp = new Date(message.timestamp).toLocaleTimeString();
+          
+          return `
+            <div class="message" data-message-id="${message.id}">
+              <div class="message-avatar">
+                <img src="${author.avatarUrl}" alt="${author.username}'s avatar">
+              </div>
+              <div class="message-content">
+                <div class="message-header">
+                  <div class="message-author">${author.username}</div>
+                  <div class="message-timestamp">${timestamp}</div>
+                </div>
+                <div class="message-text">${escapeHTML(message.text)}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+        
+        // Update the container
+        messagesContainer.innerHTML = messagesHTML;
+        
+        // Scroll to the bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      // Update typing indicators
+      function updateTypingIndicators() {
+        const messagesContainer = document.getElementById('messages-container');
+        
+        // Remove existing typing indicators
+        const existingIndicators = messagesContainer.querySelectorAll('.typing-indicator');
+        existingIndicators.forEach(el => el.remove());
+        
+        // Add new typing indicators for users who are typing
+        const typingUsers = [];
+        Object.entries(room.presence).forEach(([clientId, data]) => {
+          if (clientId !== room.clientId && data.typing) {
+            const user = room.peers[clientId];
+            if (user) {
+              typingUsers.push(user.username);
+            }
+          }
+        });
+        
+        if (typingUsers.length > 0) {
+          const typingText = typingUsers.length === 1 
+            ? `${typingUsers[0]} is typing...` 
+            : `${typingUsers.join(', ')} are typing...`;
+          
+          const typingIndicator = document.createElement('div');
+          typingIndicator.className = 'typing-indicator';
+          typingIndicator.textContent = typingText;
+          
+          messagesContainer.appendChild(typingIndicator);
+          
+          // Scroll to the bottom
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+      }
+
+      // Render members list
+      function renderMembers() {
+        const onlineMembersContainer = document.getElementById('online-members');
+        
+        // Generate HTML for online members
+        const membersHTML = Object.values(room.peers).map(peer => {
+          const isTyping = room.presence[peer.id]?.typing ? ' (typing...)' : '';
+          return `
+            <div class="member" data-user-id="${peer.id}">
+              <div class="member-avatar">
+                <img src="${peer.avatarUrl}" alt="${peer.username}'s avatar">
+              </div>
+              <div class="member-username">${peer.username}${isTyping}</div>
+            </div>
+          `;
+        }).join('');
+        
+        // Update the online members container
+        onlineMembersContainer.innerHTML = `
+          <div class="group-header">ONLINE — ${Object.keys(room.peers).length}</div>
+          ${membersHTML}
+        `;
+      }
+
+      // Handle clicks on user avatars and members to show profile
+      function handleProfileClick(event) {
+        // Find if we clicked on a member or avatar
+        const memberEl = event.target.closest('.member');
+        const avatarEl = event.target.closest('.message-avatar');
+        const usernameEl = event.target.closest('.message-author');
+        
+        if (memberEl) {
+          const userId = memberEl.dataset.userId;
+          showUserProfile(userId);
+        } else if (avatarEl) {
+          const messageEl = avatarEl.closest('.message');
+          if (messageEl) {
+            const messageId = messageEl.dataset.messageId;
+            const message = room.roomState.messages[messageId];
+            if (message) {
+              showUserProfile(message.authorId);
+            }
+          }
+        } else if (usernameEl) {
+          const messageEl = usernameEl.closest('.message');
+          if (messageEl) {
+            const messageId = messageEl.dataset.messageId;
+            const message = room.roomState.messages[messageId];
+            if (message) {
+              showUserProfile(message.authorId);
+            }
+          }
+        } else if (event.target.closest('.server')) {
+          // Handle click on server icon
+          const serverUsers = Object.values(room.peers);
+          if (serverUsers.length > 0) {
+            // Show server member list modal
+            showServerMembersList(serverUsers);
+          }
+        }
+      }
+
+      // Show user profile modal
+      function showUserProfile(userId) {
+        const user = room.peers[userId];
+        if (!user) return;
+        
+        // Create or update profile modal
+        let profileModal = document.getElementById('profile-modal');
+        if (!profileModal) {
+          profileModal = document.createElement('div');
+          profileModal.id = 'profile-modal';
+          profileModal.className = 'profile-modal';
+          document.body.appendChild(profileModal);
+        }
+        
+        // Generate random tag (Discord-like user#1234)
+        const randomTag = Math.floor(1000 + Math.random() * 9000);
+        
+        // Fill the profile content
+        profileModal.innerHTML = `
+          <div class="profile-card">
+            <div class="profile-banner"></div>
+            <div class="profile-content">
+              <div class="profile-close">&times;</div>
+              <div class="profile-avatar">
+                <img src="${user.avatarUrl}" alt="${user.username}'s avatar">
+              </div>
+              <div class="profile-info">
+                <div class="profile-username">${user.username}</div>
+                <div class="profile-tag">${user.username}#${randomTag}</div>
+                
+                <div class="profile-about">
+                  <div class="profile-about-title">About Me</div>
+                  <div class="profile-about-content">
+                    This is a Bizcord user who enjoys chatting.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        // Show the modal
+        profileModal.classList.add('active');
+        
+        // Add close functionality
+        profileModal.querySelector('.profile-close').addEventListener('click', () => {
+          profileModal.classList.remove('active');
+        });
+        
+        // Close when clicking outside the card
+        profileModal.addEventListener('click', (e) => {
+          if (e.target === profileModal) {
+            profileModal.classList.remove('active');
+          }
+        });
+      }
+
+      // Show server members list modal
+      function showServerMembersList(users) {
+        // Create or update server members modal
+        let serverModal = document.getElementById('server-members-modal');
+        if (!serverModal) {
+          serverModal = document.createElement('div');
+          serverModal.id = 'server-members-modal';
+          serverModal.className = 'profile-modal'; // Reuse profile modal styles
+          document.body.appendChild(serverModal);
+        }
+        
+        // Generate members list HTML
+        const membersListHTML = users.map(user => {
+          return `
+            <div class="member server-member-item" data-user-id="${user.id}">
+              <div class="member-avatar">
+                <img src="${user.avatarUrl}" alt="${user.username}'s avatar">
+              </div>
+              <div class="member-username">${user.username}</div>
+            </div>
+          `;
+        }).join('');
+        
+        // Fill the server members modal content
+        serverModal.innerHTML = `
+          <div class="profile-card" style="width: 400px;">
+            <div class="profile-banner" style="background-color: #5865f2;"></div>
+            <div class="profile-content">
+              <div class="profile-close">&times;</div>
+              <div class="profile-info" style="margin-top: 10px;">
+                <div class="profile-username" style="margin-bottom: 20px;">Bizcord Members</div>
+                <div class="server-members-list">
+                  ${membersListHTML}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        // Show the modal
+        serverModal.classList.add('active');
+        
+        // Add close functionality
+        serverModal.querySelector('.profile-close').addEventListener('click', () => {
+          serverModal.classList.remove('active');
+        });
+        
+        // Close when clicking outside the card
+        serverModal.addEventListener('click', (e) => {
+          if (e.target === serverModal) {
+            serverModal.classList.remove('active');
+          }
+        });
+        
+        // Add click event to member items
+        const memberItems = serverModal.querySelectorAll('.server-member-item');
+        memberItems.forEach(item => {
+          item.addEventListener('click', () => {
+            const userId = item.dataset.userId;
+            showUserProfile(userId);
+            serverModal.classList.remove('active');
+          });
+        });
+      }
+
+      // Helper function to escape HTML
+      function escapeHTML(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Open appearance settings modal
+      function openAppearanceSettings() {
+        // Create or get settings modal
+        let settingsModal = document.getElementById('settings-modal');
+        
+        if (!settingsModal) {
+          settingsModal = document.createElement('div');
+          settingsModal.id = 'settings-modal';
+          settingsModal.className = 'settings-modal';
+          
+          // Create settings content
+          settingsModal.innerHTML = `
+            <div class="settings-container">
+              <div class="settings-sidebar">
+                <h3>User Settings</h3>
+                <div class="settings-nav-item active">Appearance</div>
+              </div>
+              <div class="settings-content">
+                <div class="settings-header">
+                  <h2>Appearance</h2>
+                  <div class="settings-close">&times;</div>
+                </div>
+                
+                <div class="settings-section">
+                  <h3>Themes</h3>
+                  <div class="theme-cards">
+                    ${Object.entries(config.themes).map(([id, theme]) => `
+                      <div class="theme-card ${currentTheme === id ? 'active' : ''}" data-theme="${id}">
+                        <h4>${theme.name}</h4>
+                        <div class="theme-preview">
+                          <div class="theme-preview-sidebar" style="background-color: ${theme.serverList}"></div>
+                          <div class="theme-preview-content" style="background-color: ${theme.background}">
+                            <div class="theme-preview-input" style="background-color: ${theme.chatInput}"></div>
+                          </div>
+                        </div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </div>
+                
+                <div class="settings-section">
+                  <h3>Font Size</h3>
+                  <div class="font-options">
+                    <div class="font-size-option">
+                      <label for="chat-font-size">Chat Font Size</label>
+                      <input type="range" id="chat-font-size" min="12" max="18" value="${localStorage.getItem('chatFontSize') || '14'}">
+                      <span id="chat-font-size-value">${localStorage.getItem('chatFontSize') || '14'}px</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          document.body.appendChild(settingsModal);
+          
+          // Add event listeners to theme cards
+          const themeCards = settingsModal.querySelectorAll('.theme-card');
+          themeCards.forEach(card => {
+            card.addEventListener('click', () => {
+              const themeId = card.dataset.theme;
+              currentTheme = themeId;
+              localStorage.setItem('theme', themeId);
+              
+              // Update UI
+              themeCards.forEach(c => c.classList.remove('active'));
+              card.classList.add('active');
+              
+              // Apply selected theme
+              applyTheme(themeId);
+            });
+          });
+          
+          // Add event listener for font size
+          const fontSizeInput = settingsModal.querySelector('#chat-font-size');
+          const fontSizeValue = settingsModal.querySelector('#chat-font-size-value');
+          
+          fontSizeInput.addEventListener('input', () => {
+            const size = fontSizeInput.value;
+            fontSizeValue.textContent = `${size}px`;
+            localStorage.setItem('chatFontSize', size);
+            document.body.style.setProperty('--chat-font-size', `${size}px`);
+            document.documentElement.style.setProperty('--chat-font-size', `${size}px`);
+          });
+          
+          // Close button
+          settingsModal.querySelector('.settings-close').addEventListener('click', () => {
+            settingsModal.classList.remove('active');
+          });
+          
+          // Close when clicking outside
+          settingsModal.addEventListener('click', (e) => {
+            if (e.target === settingsModal) {
+              settingsModal.classList.remove('active');
+            }
+          });
+        }
+        
+        // Show the modal
+        settingsModal.classList.add('active');
+      }
+
+      // Apply theme
+      function applyTheme(themeId) {
+        const theme = config.themes[themeId];
+        if (!theme) return;
+        
+        // Apply CSS variables
+        document.documentElement.style.setProperty('--background-color', theme.background);
+        document.documentElement.style.setProperty('--channel-area-color', theme.channelArea);
+        document.documentElement.style.setProperty('--server-list-color', theme.serverList);
+        document.documentElement.style.setProperty('--chat-input-color', theme.chatInput);
+        document.documentElement.style.setProperty('--text-color', theme.text);
+        document.documentElement.style.setProperty('--text-muted-color', theme.textMuted);
+        
+        // Apply font size
+        const fontSize = localStorage.getItem('chatFontSize') || '14';
+        document.documentElement.style.setProperty('--chat-font-size', `${fontSize}px`);
+      }
+    })();
+  </script>
+</body>
+</html>
