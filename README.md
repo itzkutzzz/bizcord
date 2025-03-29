@@ -1,0 +1,2 @@
+# bizcord
+Bizcord, Discord. Yeah.
