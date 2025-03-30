@@ -2,29 +2,30 @@
 <!DOCTYPE html><html lang="en" w-tid="1">
 <head w-tid="3">
   
-<title>Bizcord</title>
-<meta property="og:title" content="Bizcord"/>
-<meta property="og:url" content="https://discord-clone--imkutzz.on.websim.ai?v=8"/>
+<title>BIZCORD</title>
+<meta property="og:title" content="BIZCORD"/>
+<meta property="og:url" content="https://bizcord.on.websim.ai?v=29"/>
 <meta property="og:type" content="website"/>
 <meta property="twitter:card" content="summary_large_image"/>
-<meta property="og:image" content="https://images.websim.ai/v1/project/y2zvtst_uh0ma0j3rqib/revision/8/1200.jpeg"/>
-<meta property="twitter:image" content="https://images.websim.ai/v1/project/y2zvtst_uh0ma0j3rqib/revision/8/1200.jpeg"/>
-<link rel="stylesheet" href="https://api.websim.ai/fonts.css?v=89f476f0d3acad11cf92785adf115b8efd7a45de">
-<link rel="stylesheet" href="https://api.websim.ai/ctxmenu.css?v=89f476f0d3acad11cf92785adf115b8efd7a45de">
-<script class="websim-injected">__WEBSIM_DATA__={"home":false,"hostOrigin":"https://websim.ai","apiOrigin":"https://api.websim.ai","isTopLevelFrame":true,"project_id":"y2zvtst_uh0ma0j3rqib","route":{"type":"slug","username":"imkutzz","slug":"discord-clone","version":8}}</script>
-<script class="websim-injected" src="https://api.websim.ai/dist/index.js?v=89f476f0d3acad11cf92785adf115b8efd7a45de"></script>
+<meta property="og:image" content="https://images.websim.ai/v1/project/y2zvtst_uh0ma0j3rqib/revision/29/1200.jpeg"/>
+<meta property="twitter:image" content="https://images.websim.ai/v1/project/y2zvtst_uh0ma0j3rqib/revision/29/1200.jpeg"/>
+<link rel="stylesheet" href="https://api.websim.ai/fonts.css?v=a1282895bceeac6751c7a025c3d46510fdd29e3b">
+<link rel="stylesheet" href="https://api.websim.ai/ctxmenu.css?v=a1282895bceeac6751c7a025c3d46510fdd29e3b">
+<script class="websim-injected">__WEBSIM_DATA__={"home":false,"hostOrigin":"https://websim.ai","apiOrigin":"https://api.websim.ai","isTopLevelFrame":true,"project_id":"y2zvtst_uh0ma0j3rqib","route":{"type":"project","id":"y2zvtst_uh0ma0j3rqib","version":29}}</script>
+<script class="websim-injected" src="https://api.websim.ai/dist/index.js?v=a1282895bceeac6751c7a025c3d46510fdd29e3b"></script>
 <meta charset="UTF-8" w-tid="5"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" w-tid="7"/>
-  <!--title>Discord Clone</title-->
+  <!--title>BIZCORD</title-->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" w-tid="11"/>
-  <script type="importmap" w-tid="13">
+  <link rel="icon" href="/favicon.png" w-tid="13"/>
+  <script type="importmap" w-tid="15">
     {
       "imports": {
         "uuid": "https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-browser/index.js"
       }
     }
   </script>
-  <style w-tid="15">
+  <style w-tid="17">
     :root {
       --background-color: #36393f;
       --channel-area-color: #2f3136;
@@ -223,6 +224,7 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      max-height: calc(100vh - 150px); /* Limit message container height */
     }
     
     .message {
@@ -269,6 +271,17 @@
     .message-text {
       color: var(--text-color);
       word-wrap: break-word;
+    }
+    
+    .reply-indicator {
+      background-color: var(--chat-input-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--text-muted-color);
+      border-left: 4px solid #5865f2;
+      word-break: break-all;
     }
     
     .message-input-container {
@@ -708,89 +721,109 @@
     }
   </style>
 </head>
-<body w-tid="17">
-  <div class="app" w-tid="19">
-    <div class="servers-list" w-tid="21">
-      <div class="server active" w-tid="23">
-        <svg viewbox="0 0 24 24" class="server-icon" w-tid="25">
-          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" w-tid="27"></path>
+<body w-tid="19">
+  <div class="app" w-tid="21">
+    <div class="servers-list" w-tid="23">
+      <div class="server active" w-tid="25">
+        <svg viewbox="0 0 24 24" class="server-icon" w-tid="27">
+          <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" w-tid="29"></path>
         </svg>
       </div>
     </div>
     
-    <div class="channel-area" w-tid="29">
-      <div class="channel-header" w-tid="31">
-        <h3 w-tid="33">Bizcord</h3>
+    <div class="channel-area" w-tid="31">
+      <div class="channel-header" style="display: flex; align-items: center; justify-content: center; padding: 10px;" w-tid="33">
+        <img src="/dsc.png" alt="Bizcord" style="max-height: 60px; margin: 0 10px;" w-tid="35"/>
       </div>
       
-      <div class="channels" w-tid="35">
-        <div class="channel-category" w-tid="37">
-          <div class="category-header" w-tid="39">
-            <span w-tid="41">TEXT CHANNELS</span>
+      <div class="channels" w-tid="37">
+        <div class="channel-category" w-tid="39">
+          <div class="category-header" w-tid="41">
+            <span w-tid="43">TEXT CHANNELS</span>
           </div>
-          <div class="channel active" w-tid="43">
-            <svg viewbox="0 0 24 24" class="channel-icon" w-tid="45">
-              <path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" w-tid="47"></path>
+          <div class="channel active" w-tid="45">
+            <svg viewbox="0 0 24 24" class="channel-icon" w-tid="47">
+              <path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" w-tid="49"></path>
             </svg>
-            <span w-tid="49">general</span>
+            <span w-tid="51">general</span>
           </div>
         </div>
       </div>
       
-      <div class="user-info" w-tid="51">
-        <div class="avatar" w-tid="53">
-          <img id="current-user-avatar" src alt="User avatar" w-tid="55"/>
+      <div class="user-info" w-tid="53">
+        <div class="avatar" w-tid="55">
+          <img id="current-user-avatar" src alt="User avatar" w-tid="57"/>
         </div>
-        <div class="user-details" w-tid="57">
-          <div id="current-username" class="username" w-tid="59">Loading...</div>
+        <div class="user-details" w-tid="59">
+          <div id="current-username" class="username" w-tid="61">Loading...</div>
         </div>
-        <div id="about-button" style="margin-left: auto; margin-right: 10px; cursor: pointer;" w-tid="61">
-          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" w-tid="63">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor" w-tid="65"/>
+        <div id="about-button" style="margin-left: auto; margin-right: 10px; cursor: pointer;" w-tid="63">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" w-tid="65">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor" w-tid="67"/>
           </svg>
         </div>
-        <div id="settings-button" style="cursor: pointer;" w-tid="67">
-          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" w-tid="69">
-            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="currentColor" w-tid="71"/>
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 12.3545 21.9556 12.7091 21.8667 13.0636L19.6667 13.9455C19.4889 14.5818 19.2 15.1636 18.8 15.7L19.0222 18.0909C18.5333 18.4909 18 18.8455 17.4222 19.1091L15.3778 17.8909C14.8222 18.0455 14.2222 18.1455 13.6 18.1455C12.9778 18.1455 12.3778 18.0455 11.8222 17.8909L9.77778 19.1091C9.2 18.8455 8.66667 18.4909 8.17778 18.0909L8.4 15.7C8 15.1636 7.71111 14.5818 7.53333 13.9455L5.33333 13.0636C5.24444 12.7091 5.2 12.3545 5.2 12C5.2 11.6455 5.24444 11.2909 5.33333 10.9364L7.53333 10.0545C7.71111 9.41818 8 8.83636 8.4 8.3L8.17778 5.90909C8.66667 5.50909 9.2 5.15455 9.77778 4.89091L11.8222 6.10909C12.3778 5.95455 12.9778 5.85455 13.6 5.85455C14.2222 5.85455 14.8222 5.95455 15.3778 6.10909L17.4222 4.89091C18 5.15455 18.5333 5.50909 19.0222 5.90909L18.8 8.3C19.2 8.83636 19.4889 9.41818 19.6667 10.0545L21.8667 10.9364C21.9556 11.2909 22 11.6455 22 12Z" fill="currentColor" w-tid="73"/>
+        <div id="clear-chat-button" style="margin-right: 10px; cursor: pointer; display: none;" w-tid="69">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" w-tid="71">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 10v2h4v-2h-4zm0-4v4h4v-4h-4zm-2 8h8v-2H8v2z" fill="currentColor" w-tid="73"/>
+          </svg>
+        </div>
+        <div id="settings-button" style="cursor: pointer;" w-tid="75">
+          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" w-tid="77">
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="currentColor" w-tid="79"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 12.3545 21.9556 12.7091 21.8667 13.0636L19.6667 13.9455C19.4889 14.5818 19.2 15.1636 18.8 15.7L19.0222 18.0909C18.5333 18.4909 18 18.8455 17.4222 19.1091L15.3778 17.8909C14.8222 18.0455 14.2222 18.1455 13.6 18.1455C12.9778 18.1455 12.3778 18.0455 11.8222 17.8909L9.77778 19.1091C9.2 18.8455 8.66667 18.4909 8.17778 18.0909L8.4 15.7C8 15.1636 7.71111 14.5818 7.53333 13.9455L5.33333 13.0636C5.24444 12.7091 5.2 12.3545 5.2 12C5.2 11.6455 5.24444 11.2909 5.33333 10.9364L7.53333 10.0545C7.71111 9.41818 8 8.83636 8.4 8.3L8.17778 5.90909C8.66667 5.50909 9.2 5.15455 9.77778 4.89091L11.8222 6.10909C12.3778 5.95455 12.9778 5.85455 13.6 5.85455C14.2222 5.85455 14.8222 5.95455 15.3778 6.10909L17.4222 4.89091C18 5.15455 18.5333 5.50909 19.0222 5.90909L18.8 8.3C19.2 8.83636 19.4889 9.41818 19.6667 10.0545L21.8667 10.9364C21.9556 11.2909 22 11.6455 22 12Z" fill="currentColor" w-tid="81"/>
           </svg>
         </div>
       </div>
     </div>
     
-    <div class="chat-area" w-tid="75">
-      <div class="chat-header" w-tid="77">
-        <div class="channel-name" w-tid="79">
-          <svg viewbox="0 0 24 24" class="channel-icon" w-tid="81">
-            <path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" w-tid="83"></path>
+    <div class="chat-area" w-tid="83">
+      <div class="chat-header" w-tid="85">
+        <div class="channel-name" w-tid="87">
+          <svg viewbox="0 0 24 24" class="channel-icon" w-tid="89">
+            <path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm0 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" w-tid="91"></path>
           </svg>
-          <span w-tid="85">general</span>
+          <span w-tid="93">general</span>
         </div>
       </div>
       
-      <div id="messages-container" class="messages-container" w-tid="87"></div>
+      <div id="messages-container" class="messages-container" w-tid="95"></div>
       
-      <div class="message-input-container" w-tid="89">
-        <form id="message-form" w-tid="91">
-          <div class="message-input" w-tid="93">
-            <input type="text" id="message-input" placeholder="Message #general" autocomplete="off" w-tid="95"/>
+      <div class="message-input-container" w-tid="97">
+        <form id="message-form" w-tid="99">
+          <div class="message-input" w-tid="101">
+            <div style="display: flex; align-items: center;" w-tid="103">
+              <input type="text" id="message-input" placeholder="Message #general" autocomplete="off" w-tid="105"/>
+              <button type="button" id="emoji-button" style="background: none; border: none; color: var(--text-muted-color); cursor: pointer; margin-left: 8px;" w-tid="107">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-smile" w-tid="109"><circle cx="12" cy="12" r="10" w-tid="111"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2" w-tid="113"></path><line x1="9" y1="9" x2="9.01" y2="9" w-tid="115"></line><line x1="15" y1="9" x2="15.01" y2="9" w-tid="117"></line></svg>
+              </button>
+              <button type="button" id="media-button" style="background: none; border: none; color: var(--text-muted-color); cursor: pointer; margin-left: 8px;" w-tid="119">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-image" w-tid="121"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" w-tid="123"></rect><circle cx="8.5" cy="8.5" r="1.5" w-tid="125"></circle><polyline points="21 15 16 10 5 21" w-tid="127"></polyline></svg>
+              </button>
+              <button type="button" id="ai-message-button" style="background: none; border: none; color: var(--text-muted-color); cursor: pointer; margin-left: 8px;" w-tid="129">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square" w-tid="131"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" w-tid="133"></path></svg>
+              </button>
+            </div>
+            <div id="emoji-picker" style="position: absolute; bottom: 50px; right: 20px; background-color: var(--chat-input-color); border-radius: 8px; padding: 10px; display: none; z-index: 100;" w-tid="135">
+              <!-- Emojis will be populated here -->
+            </div>
+            <input type="file" id="media-input" style="display: none;" accept="image/*" w-tid="137"/>
           </div>
         </form>
       </div>
     </div>
     
-    <div class="members-list" w-tid="97">
-      <div class="members-header" w-tid="99">
-        <h3 w-tid="101">MEMBERS</h3>
+    <div class="members-list" w-tid="139">
+      <div class="members-header" w-tid="141">
+        <h3 w-tid="143">MEMBERS</h3>
       </div>
-      <div id="online-members" class="members-group" w-tid="103">
-        <div class="group-header" w-tid="105">ONLINE</div>
+      <div id="online-members" class="members-group" w-tid="145">
+        <div class="group-header" w-tid="147">ONLINE</div>
         <!-- Online members will be populated here -->
       </div>
     </div>
   </div>
 
-  <script w-tid="107">
+  <script w-tid="149">
     // Configuration settings
     const config = {
       // How often to update typing status (in milliseconds)
@@ -896,8 +929,40 @@
           serverList: "#16384c",
           text: "#ffffff",
           textMuted: "#bcdaf2"
-        }
-      }
+        },
+      },
+      emojis: [
+        '😀', '😂', '😊', '😍', '🤔', '👍', '👎', '❤️', '🎉', '🍕', '🚀', '🌟',
+        '🥳', '😎', '🤯', '😴', '☕', '🎈', '🎁', '🎶', '🤣', '😇', '😈', '💩',
+        '👻', '👽', '🤖', '🙈', '🙉', '🙊', '🐶', '🐱', '🐭', '🐹', '🐰', '🦊',
+        '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🐔', '🐧', '🐦',
+        '🦉', '🦋', '🐛', '🐝', '🐞', '🐜', '🦗', '🕷️', '🦂', '🐢', '🐍', '🦎',
+        '🦖', '🦕', '🦀', '🦞', '🦐', '🦑', '🐙', '🐠', '🐟', '🐡', '🐬', '🐳',
+        '🦈', '🐊', '🐅', '🐆', '🦓', '🦍', '🦧', '🐘', '🦛', '🦣', '🦧', '🐪',
+        '🐫', '🦒', '🦘', '🦬', '🦮', '🐕', '🐩', '🐈', '🐓', '🦃', '🕊️', '🦢',
+        '🦩', '🦚', '🦜', '🦆', '🦉', '🦇', '🦋', '🐛', '🐝', '🐞', '🐜', '🦗',
+        '🕷️', '🦂', '🐢', '🐍', '🦎', '🦖', '🦕', '🦀', '🦞', '🦐', '🦑', '🐙',
+        '🐠', '🐟', '🐡', '🐬', '🐳', '🦈', '🐊', '🐅', '🐆', '🦓', '🦍', '🦧',
+        '🐘', '🦛', '🦣', '🦧', '🐪', '🐫', '🦒', '🦘', '🦬', '🦮', '🐕', '🐩',
+        '🐈', '🐓', '🦃', '🕊️', '🦢', '🦩', '🦚', '🦜', '🦆', '🦉', '🦇', '🦋',
+        '🐛', '🐝', '🐞', '🐜', '🦗', '🕷️', '🦂', '🐢', '🐍', '🦎', '🦖', '🦕',
+        '🍇', '🍈', '🍉', '🍊', '🍋', '🍌', '🍍', '🥭', '🍎', '🍏', '🍐', '🍑',
+        '🍒', '🍓', '🥝', '🍅', '🥥', '🥑', '🍆', '🥔', '🥕', '🌽', '🌶️', '🥒',
+        '🥬', '🥦', '🍄', '🥜', '🌰', '🍞', '🥐', '🥖', '🥨', '🥯', '🥞', '🧇',
+        '🧀', '🍖', '🍗', '🥩', '🥓', '🍔', '🍟', '🍕', '🌭', '🥪', '🌮', '🌯',
+        '🥙', '🧆', '🥚', '🥘', '🍝', '🍜', '🍲', '🍛', '🍣', '🍱', '🍘', '🍙',
+        '🍚', '🍜', '🍢', '🍡', '🍧', '🍨', '🍦', '🥧', '🍰', '🎂', '🍮', '🍬',
+        '🍭', '🍫', '🍿', '🍩', '🍪', '🌰', '🥜', '🍯', '🥛', '☕', '🍵', '🍶',
+        '🍺', '🍻', '🍷', '🥂', '🥃', '🍸', '🍹', '🧉', '💧', '🎈', '🎉', '🎊',
+        '🎁', '🎂', '🎃', '🎄', '🎆', '🎇', '✨', '🌟', '🌠', '🌙', '🌞', '🌈',
+        '☔', '🌨️', '🌩️', '🔥', '💧', '🌊', '🌫️', '🌬️', '🌀', '⭐', '🌍', '🌎',
+        '🌏', '🌐', '🗺️', '🧭', '🏔️', '⛰️', '🌋', '🗻', '🏕️', '🏖️', '🏜️', '🏝️',
+        '🏞️', '🏟️', '🏛️', '🏗️', '🏘️', '🏙️', '🌆', '🌇', '🌉', '🌃', '🌌', '🌠',
+        '🎇', '🎆', '🌈', '🌧️', '⛈️', '🌩️', '🌨️', '☀️', '🌤️', '🌥️', '🌦️', '☁️',
+        '🌫️', '🌬️', '🌀', '💧', '🌊', '🔥', '⭐', '🌟', '✨', '🌙', '🌞', '🌍',
+        '🌎', '🌏', '🌐', '🗺️', '🧭', '🏔️', '⛰️', '🌋', '🗻', '🏕️', '🏖️', '🏜️',
+        '🏝️', '🏞️', '🏟️', '🏛️', '🏗️', '🏘️', '🏙️', '🌆', '🌇', '🌉', '🌃', '🌌'
+      ]
     };
     
     // Use a self-executing function to handle initialization without requiring import
@@ -950,6 +1015,17 @@
           // Apply saved theme
           applyTheme(currentTheme);
           
+          // Check if user is banned
+          const bannedUsers = room.roomState.bannedUsers || {};
+          const currentUsername = room.peers[room.clientId]?.username;
+          if (currentUsername && bannedUsers[currentUsername]) {
+            alert("You are banned from this chat.");
+            return; // Stop initialization if banned
+          }
+          
+          // Show clear chat button if admin
+          document.getElementById('clear-chat-button').style.display = isCurrentUserAdmin() ? 'block' : 'none';
+          
         } catch (error) {
           console.error('Failed to initialize the chat app:', error);
         }
@@ -979,6 +1055,14 @@
         document.getElementById('about-button').addEventListener('click', () => {
           window.location.href = 'https://bizcord.vercel.app/about.html';
         });
+        
+        document.getElementById('media-button').addEventListener('click', () => document.getElementById('media-input').click());
+        document.getElementById('media-input').addEventListener('change', handleMediaUpload);
+        
+        // Clear chat button
+        document.getElementById('clear-chat-button').addEventListener('click', () => {
+          handleClearChatButton();
+        });
       }
 
       // Handle message submission
@@ -1004,6 +1088,21 @@
         const messageId = `msg-${uuidv4()}`;
         const timestamp = Date.now();
         
+        // Check for URLs in the message
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        const urls = text.match(urlRegex);
+        
+        let mediaUrl = null;
+        if (urls) {
+          for (const url of urls) {
+            const extractedMedia = extractMediaFromLink(url);
+            if (extractedMedia) {
+              mediaUrl = extractedMedia;
+              break;
+            }
+          }
+        }
+        
         // Update the room state with the new message
         const messages = room.roomState.messages || {};
         
@@ -1013,6 +1112,7 @@
           text,
           authorId: room.clientId,
           timestamp,
+          mediaUrl: mediaUrl, // Add media URL if found
         };
         
         // Add it to the room state
@@ -1027,6 +1127,41 @@
         setTimeout(() => {
           pruneOldMessages();
         }, 100);
+      }
+
+      // Function to detect and extract media from links
+      function extractMediaFromLink(url) {
+        const mediaExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp', '.svg', '.mp4', '.webm', '.ogg'];
+        const lowercaseUrl = url.toLowerCase();
+        
+        // Check if URL directly points to a media file
+        const isMediaUrl = mediaExtensions.some(ext => lowercaseUrl.endsWith(ext));
+        
+        if (isMediaUrl) {
+          return url;
+        }
+        
+        return null;
+      }
+
+      // Delete a message from the room state
+      function deleteMessage(messageId) {
+        const messages = room.roomState.messages || {};
+        if (messages[messageId]) {
+          room.updateRoomState({
+            messages: {
+              ...messages,
+              [messageId]: null // Set to null to delete
+            }
+          });
+        }
+      }
+
+      // Clear all messages
+      function clearChat() {
+        room.updateRoomState({
+          messages: {}
+        });
       }
 
       // Keep only the most recent messages up to the max limit
@@ -1114,6 +1249,19 @@
           const author = room.peers[message.authorId] || { username: 'Unknown User', avatarUrl: '' };
           const timestamp = new Date(message.timestamp).toLocaleTimeString();
           
+          // Escape and linkify text
+          let messageContent = escapeHTML(message.text);
+          messageContent = messageContent.replace(/(https?:\/\/[^\s]+)/g, (url) => `<a href="${url}" target="_blank">${url}</a>`);
+          
+          // Add media if exists
+          if (message.mediaUrl) {
+            messageContent += `<br><img src="${message.mediaUrl}" style="max-width: 300px; max-height: 200px; border-radius: 8px; margin-top: 8px;">`;
+          }
+
+          const isAuthor = message.authorId === room.clientId;
+          const isAdmin = isCurrentUserAdmin();
+          const showDeleteButton = isAuthor || isAdmin;
+
           return `
             <div class="message" data-message-id="${message.id}">
               <div class="message-avatar">
@@ -1123,8 +1271,11 @@
                 <div class="message-header">
                   <div class="message-author">${author.username}</div>
                   <div class="message-timestamp">${timestamp}</div>
+                  ${showDeleteButton ? `<button class="delete-message-button" data-message-id="${message.id}" style="background: none; border: none; color: var(--text-muted-color); cursor: pointer; margin-left: 8px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                  </button>` : ''}
                 </div>
-                <div class="message-text">${escapeHTML(message.text)}</div>
+                <div class="message-text">${messageContent}</div>
               </div>
             </div>
           `;
@@ -1135,6 +1286,14 @@
         
         // Scroll to the bottom
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Add event listeners to delete buttons
+        messagesContainer.querySelectorAll('.delete-message-button').forEach(button => {
+          button.addEventListener('click', (event) => {
+            const messageId = event.target.closest('.delete-message-button').dataset.messageId;
+            deleteMessage(messageId);
+          });
+        });
       }
 
       // Update typing indicators
@@ -1275,6 +1434,13 @@
           </div>
         `;
         
+        const isAdmin = isCurrentUserAdmin();
+        if (isAdmin) {
+          profileModal.innerHTML += `
+            <button id="ban-user-button" style="background-color: #f44336; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; margin-top: 20px; width: 100%;">Ban User</button>
+          `;
+        }
+        
         // Show the modal
         profileModal.classList.add('active');
         
@@ -1289,6 +1455,25 @@
             profileModal.classList.remove('active');
           }
         });
+        
+        if (isAdmin) {
+          profileModal.querySelector('#ban-user-button').addEventListener('click', () => {
+            handleBanUser(user.username);
+            profileModal.classList.remove('active');
+          });
+        }
+      }
+
+      function handleBanUser(usernameToBan) {
+        if (confirm(`Are you sure you want to ban user ${usernameToBan}? This user will be blocked from accessing the chat.`)) {
+          const bannedUsers = room.roomState.bannedUsers || {};
+          room.updateRoomState({
+            bannedUsers: {
+              ...bannedUsers,
+              [usernameToBan]: true // Use username as key, value doesn't matter (boolean true for simplicity)
+            }
+          });
+        }
       }
 
       // Show server members list modal
@@ -1363,11 +1548,16 @@
         return div.innerHTML;
       }
 
+      function isCurrentUserAdmin() {
+        return room.peers[room.clientId]?.username === 'kut';
+      }
+
       // Open appearance settings modal
       function openAppearanceSettings() {
         // Create or get settings modal
         let settingsModal = document.getElementById('settings-modal');
-        
+        const isAdmin = isCurrentUserAdmin();
+
         if (!settingsModal) {
           settingsModal = document.createElement('div');
           settingsModal.id = 'settings-modal';
@@ -1378,15 +1568,16 @@
             <div class="settings-container">
               <div class="settings-sidebar">
                 <h3>User Settings</h3>
-                <div class="settings-nav-item active">Appearance</div>
+                <div class="settings-nav-item active" data-section="appearance">Appearance</div>
+                ${isAdmin ? `<div class="settings-nav-item" data-section="server">Server Settings</div>` : ''}
               </div>
               <div class="settings-content">
                 <div class="settings-header">
-                  <h2>Appearance</h2>
+                  <h2 id="settings-content-title">Appearance</h2>
                   <div class="settings-close">&times;</div>
                 </div>
-                
-                <div class="settings-section">
+
+                <div id="appearance-settings" class="settings-section">
                   <h3>Themes</h3>
                   <div class="theme-cards">
                     ${Object.entries(config.themes).map(([id, theme]) => `
@@ -1402,8 +1593,26 @@
                     `).join('')}
                   </div>
                 </div>
+
+                ${isAdmin ? `
+                <div id="server-settings" class="settings-section" style="display: none;">
+                  <h3>Server Actions</h3>
+                  <button id="clear-chat-button" style="background-color: #f44336; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Clear Chat</button>
+
+                  <div class="custom-theme-section">
+                    <div class="custom-theme-header">
+                      <h4>Custom Emojis</h4>
+                    </div>
+                    <input type="file" id="custom-emoji-input" accept="image/*" style="margin-bottom: 10px;">
+                    <button id="add-custom-emoji-button" style="background-color: #4CAF50; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Add Emoji</button>
+                    <div id="custom-emojis-preview" style="display:flex; flex-wrap: wrap; margin-top: 10px;">
+                      <!-- Custom emojis will be previewed here -->
+                    </div>
+                  </div>
+                </div>
+                ` : ''}
                 
-                <div class="settings-section">
+                <div class="settings-section" id="font-settings">
                   <h3>Font Size</h3>
                   <div class="font-options">
                     <div class="font-size-option">
@@ -1418,6 +1627,18 @@
           `;
           
           document.body.appendChild(settingsModal);
+
+          // Add event listeners for settings navigation
+          settingsModal.querySelectorAll('.settings-nav-item').forEach(navItem => {
+            navItem.addEventListener('click', () => {
+              settingsModal.querySelectorAll('.settings-nav-item').forEach(item => item.classList.remove('active'));
+              navItem.classList.add('active');
+              const section = navItem.dataset.section;
+              settingsModal.querySelectorAll('.settings-section').forEach(sec => sec.style.display = 'none');
+              document.getElementById(`${section}-settings`).style.display = 'block';
+              document.getElementById('settings-content-title').textContent = navItem.textContent;
+            });
+          });
           
           // Add event listeners to theme cards
           const themeCards = settingsModal.querySelectorAll('.theme-card');
@@ -1447,6 +1668,48 @@
             document.body.style.setProperty('--chat-font-size', `${size}px`);
             document.documentElement.style.setProperty('--chat-font-size', `${size}px`);
           });
+
+          if (isAdmin) {
+            // Clear chat button functionality
+            settingsModal.querySelector('#clear-chat-button').addEventListener('click', () => {
+              if (confirm('Are you sure you want to clear the chat history? This action cannot be undone.')) {
+                clearChat();
+                settingsModal.classList.remove('active');
+              }
+            });
+
+            // Custom emoji functionality
+            const customEmojiInput = settingsModal.querySelector('#custom-emoji-input');
+            const addCustomEmojiButton = settingsModal.querySelector('#add-custom-emoji-button');
+
+            addCustomEmojiButton.addEventListener('click', async () => {
+              const file = customEmojiInput.files[0];
+              if (!file) {
+                alert('Please select an image file.');
+                return;
+              }
+              try {
+                const emojiUrl = await websim.upload(file);
+                const currentCustomEmojis = room.roomState.customEmojis || {};
+                const emojiId = `custom-emoji-${uuidv4()}`; // Generate unique ID
+                room.updateRoomState({
+                  customEmojis: {
+                    ...currentCustomEmojis,
+                    [emojiId]: emojiUrl
+                  }
+                });
+                customEmojiInput.value = ''; // Reset input
+                renderCustomEmojisPreview(settingsModal); // Update preview in settings
+                setupEmojiPicker(); // Re-init emoji picker to include new emojis
+              } catch (error) {
+                console.error('Error uploading custom emoji:', error);
+                alert('Failed to upload custom emoji.');
+              }
+            });
+
+            // Initial render of custom emojis preview
+            renderCustomEmojisPreview(settingsModal);
+          }
           
           // Close button
           settingsModal.querySelector('.settings-close').addEventListener('click', () => {
@@ -1465,6 +1728,20 @@
         settingsModal.classList.add('active');
       }
 
+      function renderCustomEmojisPreview(settingsModal) {
+        const previewContainer = settingsModal.querySelector('#custom-emojis-preview');
+        previewContainer.innerHTML = ''; // Clear existing preview
+        const customEmojis = room.roomState.customEmojis || {};
+        Object.values(customEmojis).forEach(url => {
+          const img = document.createElement('img');
+          img.src = url;
+          img.style.width = '30px';
+          img.style.height = '30px';
+          img.style.margin = '5px';
+          previewContainer.appendChild(img);
+        });
+      }
+
       // Apply theme
       function applyTheme(themeId) {
         const theme = config.themes[themeId];
@@ -1480,8 +1757,145 @@
         
         // Apply font size
         const fontSize = localStorage.getItem('chatFontSize') || '14';
+        document.body.style.setProperty('--chat-font-size', `${fontSize}px`);
         document.documentElement.style.setProperty('--chat-font-size', `${fontSize}px`);
       }
+
+      async function handleMediaUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        try {
+          const mediaUrl = await websim.upload(file);
+          sendMessageWithMedia(mediaUrl);
+        } catch (error) {
+          console.error('Error uploading media:', error);
+          alert('Failed to upload media.');
+        } finally {
+          document.getElementById('media-input').value = ''; // Reset file input
+        }
+      }
+
+      function sendMessageWithMedia(mediaUrl) {
+        const messageId = `msg-${uuidv4()}`;
+        const timestamp = Date.now();
+        
+        // Update the room state with the new message
+        const messages = room.roomState.messages || {};
+        
+        // Create the new message object
+        const newMessage = {
+          id: messageId,
+          text: "", // Media messages can have optional text too, leave empty for now
+          authorId: room.clientId,
+          timestamp,
+          mediaUrl: mediaUrl,
+        };
+        
+        // Add it to the room state
+        room.updateRoomState({
+          messages: {
+            ...messages,
+            [messageId]: newMessage
+          }
+        });
+        
+        // Limit the number of messages (clean up old ones)
+        setTimeout(() => {
+          pruneOldMessages();
+        }, 100);
+      }
+
+      function handleClearChatButton() {
+        if (confirm('Are you sure you want to clear the chat history? This action cannot be undone.')) {
+          clearChat();
+        }
+      }
+
+      function setupEmojiPicker() {
+        const emojiButton = document.getElementById('emoji-button');
+        const emojiPicker = document.getElementById('emoji-picker');
+        const messageInput = document.getElementById('message-input');
+        const messagesContainer = document.getElementById('messages-container');
+
+        let emojis = [...config.emojis];
+        const customEmojis = room.roomState.customEmojis || {};
+        emojis = emojis.concat(Object.values(customEmojis).map(url => `<img src="${url}" style="width: 1.5em; height: 1.5em;">`));
+
+        emojiPicker.innerHTML = emojis.map(emoji => {
+          if (typeof emoji === 'string') {
+            return `<span style="cursor: pointer; padding: 5px; font-size: 1.5em;" onclick="insertEmoji('${emoji}')">${emoji}</span>`;
+          } else { // Assume it's an emoji image element
+            return `<span style="cursor: pointer; padding: 5px;" onclick="insertEmoji('${emoji.outerHTML}')">${emoji.outerHTML}</span>`;
+          }
+        }).join('');
+
+        emojiButton.addEventListener('click', (event) => {
+          event.stopPropagation(); // Prevent document click from immediately closing it
+          emojiPicker.style.display = 'block';
+          // Position emoji picker above the input, but fully visible in messages container
+          const inputRect = document.querySelector('.message-input').getBoundingClientRect();
+          emojiPicker.style.bottom = `${messagesContainer.offsetHeight - inputRect.top + messagesContainer.scrollTop + 10}px`;
+          emojiPicker.style.right = `${document.querySelector('.message-input-container').offsetLeft + document.querySelector('.message-input-container').offsetWidth - inputRect.right + 20}px`;
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!emojiPicker.contains(event.target) && event.target !== emojiButton) {
+            emojiPicker.style.display = 'none';
+          }
+        });
+      }
+
+      async function setupAiMessageCreator() {
+        const aiMessageButton = document.getElementById('ai-message-button');
+        const messageInput = document.getElementById('message-input');
+
+        aiMessageButton.addEventListener('click', async () => {
+          const messages = room.roomState.messages || {};
+          const messagesList = Object.values(messages).sort((a, b) => b.timestamp - a.timestamp).slice(0, 10);
+          const conversationHistory = messagesList.map(msg => {
+            const author = room.peers[msg.authorId] ? room.peers[msg.authorId].username : 'Unknown';
+            return {
+              role: 'user', // In this context, all messages are treated as user input for the AI
+              content: `${author}: ${msg.text}`,
+            };
+          });
+
+          if (conversationHistory.length > 0) {
+            try {
+              const completion = await websim.chat.completions.create({
+                messages: [
+                  {
+                    role: 'system',
+                    content: 'You are a helpful chat assistant in a discord-like chat app. Based on the recent chat history, suggest a short message that the user might want to send. Be concise and relevant to the conversation.',
+                  },
+                  ...conversationHistory,
+                ],
+              });
+              if (completion && completion.content) {
+                messageInput.value = completion.content;
+              } else {
+                console.warn('AI message generation failed or returned empty content.');
+                alert('Could not generate a message suggestion.');
+              }
+            } catch (error) {
+              console.error('Error generating AI message:', error);
+              alert('Error generating message suggestion. Please try again later.');
+            }
+          } else {
+            alert('No recent messages to base a suggestion on. Send some messages first!');
+          }
+        });
+      }
+
+      window.insertEmoji = function(emoji) {
+        const messageInput = document.getElementById('message-input');
+        messageInput.value += emoji;
+        messageInput.focus();
+      };
+
+      setupEmojiPicker();
+      setupAiMessageCreator();
     })();
   </script>
 </body>
